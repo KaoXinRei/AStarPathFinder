@@ -67,15 +67,18 @@ class Window(ttk.Frame):
                 x, y = i
                 self.map.create_rectangle(x * 4, y * 4, x * 4 + 4, y * 4 + 4, fill='blue', outline='blue')
         except:
-            print('No such path')
+            pass
         finished = True
 
     def place_wall(self, event):
-        if not self.finished:
-            if self.switch.get() == 'wall':
-                x0, y0 = event.x // 4 * 4, event.y // 4 * 4
-                self.map.create_rectangle(x0, y0, x0 + 4, y0 + 4, fill='black')
-                self.matrix[x0 // 4][y0 // 4] = False
+        try:
+            if not self.finished:
+                if self.switch.get() == 'wall':
+                    x0, y0 = event.x // 4 * 4, event.y // 4 * 4
+                    self.map.create_rectangle(x0, y0, x0 + 4, y0 + 4, fill='black')
+                    self.matrix[x0 // 4][y0 // 4] = False
+        except:
+            pass
 
     def clear(self, event):
         self.start_coords = ()
